@@ -1,8 +1,8 @@
-package Finished;
+package Chap09;
 
 import java.util.ArrayList;
 
-public class Q0908 {
+public class Q08 {
 
 	ArrayList<int[]> result = new ArrayList<int[]>();
 	
@@ -52,7 +52,7 @@ public class Q0908 {
 	public static void main(String[] args) {
 		int sum = 25;
 		
-		Q0908 service = new Q0908();
+		Q08 service = new Q08();
 		service.findCombination(sum);
 	}
 }

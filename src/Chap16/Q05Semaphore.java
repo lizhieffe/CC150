@@ -1,47 +1,57 @@
 package Chap16;
 
+import java.util.concurrent.Semaphore;
+
 import org.junit.Test;
 
-public class Q05 {
-	private boolean firstFinished = false;
-	private boolean secondFinished = false;
+public class Q05Semaphore {
+	Semaphore s1 = new Semaphore(1);
+	Semaphore s2 = new Semaphore(1);
+	Semaphore s3 = new Semaphore(1);
 	
-	public synchronized void first() {
+	public Q05Semaphore() {
+		try {
+			s1.acquire();
+			s2.acquire();
+			s3.acquire();
+		}
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void first() {
 		System.out.println("first()");
-		firstFinished = true;
-		notifyAll();
+		s1.release();
 	}
 	
-	public synchronized void second() {
+	public void second() {
 		try {
-			while (!firstFinished) {
-				wait();
-			}
+			s1.acquire();
+			s1.release();
 			System.out.println("second()");
-			secondFinished = true;
-			notifyAll();
+			s2.release();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public synchronized void third() {
+	public void third() {
 		try {
-			while (!secondFinished) {
-				wait();
-			}
+			s2.acquire();
+			s2.release();
 			System.out.println("third()");
+			s3.release();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
 	
 	@Test
 	public void tc1() {
-		final Q05 tc = new Q05();
+		final Q05Semaphore tc = new Q05Semaphore();
 		Runnable task1 = new Runnable() {
 			public void run() {
 				tc.first();
@@ -60,5 +70,11 @@ public class Q05 {
 		new Thread(task3).start();
 		new Thread(task2).start();
 		new Thread(task1).start();
+		try {
+			Thread.sleep(10000);
+		}
+		catch(InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }

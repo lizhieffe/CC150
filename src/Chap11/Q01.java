@@ -1,8 +1,8 @@
-package Finished;
+package Chap11;
 
 import java.util.Arrays;
 
-public class Q1101 {
+public class Q01 {
 	int[] mergeTwoArrays(int[] A, int[] B) {
 		if (A.length == 0) {
 			Arrays.sort(B);
@@ -41,7 +41,7 @@ public class Q1101 {
 		int[] A = {1, 3, 9, 7, 5};
 		int[] B = {6, 4};
 		
-		Q1101 service = new Q1101();
+		Q01 service = new Q01();
 		service.mergeTwoArrays(A, B);
 	}
 }

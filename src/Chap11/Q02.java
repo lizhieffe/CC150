@@ -1,11 +1,11 @@
-package Finished;
+package Chap11;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class Q1102 {
+public class Q02 {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void sortArray(String[] array) {
@@ -60,7 +60,7 @@ public class Q1102 {
 	public static void main(String[] args) {
 		String[] strings = {"abc", "cba", "bbb", "efr", "ref"};
 		
-		Q1102 service = new Q1102();
+		Q02 service = new Q02();
 		service.sortArray(strings);
 	}
 }
